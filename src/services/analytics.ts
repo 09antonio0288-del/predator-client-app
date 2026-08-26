@@ -1,4 +1,5 @@
 import type { AnalyticsEvent, AnalyticsEventName } from "@/types";
+
 export function trackEvent(
   name: AnalyticsEventName,
   payload?: Record<string, string | number | boolean>
@@ -13,9 +14,9 @@ export function trackEvent(
     try {
       const key = "predator-analytics-v1";
       const prev = JSON.parse(localStorage.getItem(key) || "[]") as AnalyticsEvent[];
-      localStorage.setItem(key, JSON.stringify([event, ...prev].slice(0, 200));
+      localStorage.setItem(key, JSON.stringify([event, ...prev].slice(0, 200)));
     } catch {
-      // ignore
+      // ignore quota
     }
   }
   return event;
